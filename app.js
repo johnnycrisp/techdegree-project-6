@@ -72,7 +72,7 @@ function checkLetter(isClicked) {
 
 qwerty.addEventListener('click', (e)=>{
     const isClicked = e.target.innerText;
-    checkLetter(isClicked);
+    checkLetter(isClicked); 
    });
 
  
