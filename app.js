@@ -5,7 +5,9 @@ const phrase = document.getElementById('phrase');
 let missed = 0;
 const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
-
+const matchingLetters = [];
+const scoreBoard = document.getElementById('scoreboard');
+const tries = document.querySelectorAll('.tries');
 
 // Hide start overlay on startButton click
 
@@ -57,25 +59,36 @@ function createLi(character){
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
-//  Function to check whether the correct letter is chosen. Accepts parameter of clicked button. Get and loop through all elements with class .letter and check if they match the letter clicked by the user. If there is a match, add .show class to the li with that letter, store matching letter and return that letter. If there is no match - return null.
+//  Event listener and function event handler to check whether the correct letter is chosen. Accepts parameter of clicked button. Get and loop through all elements with class .letter and check if they match the letter clicked by the user. If there is a match, add .show class to the li with that letter, store matching letter and return that letter. If there is no match - return null.
 
 function checkLetter(isClicked) {
         const letters = document.getElementsByClassName('letter');
+        isClicked.className = 'chosen';
+        isClicked.setAttribute('disabled', 'true');
             for(let i = 0; i < letters.length; i++){
                    const singleLetter = letters[i]; 
                    const singleLetterText = letters[i].innerText;
-                        if(singleLetterText.toLowerCase() === isClicked){
+                        if(singleLetterText.toLowerCase() === isClicked.innerText){
                             singleLetter.classList.add('show');
-                        } 
+                            matchingLetters.push(singleLetterText);
+                        } else if (singleLetterText.toLowerCase() !== isClicked.innerText){
+                            missed++;
+                            const list = scoreBoard.firstElementChild;
+                            let firstTry = tries[0];
+                            firstTry.remove();
+                            console.log(missed);
+                            
+                        }
         }
+        return matchingLetters;
    }
 
 qwerty.addEventListener('click', (e)=>{
-    const isClicked = e.target.innerText;
+    const isClicked = e.target;
     checkLetter(isClicked); 
    });
 
- 
 
+// !letters.includes(isClicked.innerText)
 
 
