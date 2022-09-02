@@ -7,7 +7,9 @@ const startButton = document.querySelector('.btn__reset');
 const startOverlay = document.querySelector('#overlay');
 const matchingLetters = [];
 const scoreBoard = document.getElementById('scoreboard');
-const tries = document.querySelectorAll('.tries');
+const tries = document.getElementsByClassName('tries');
+const letters = document.getElementsByClassName('letter');
+
 
 // Hide start overlay on startButton click
 
@@ -62,7 +64,6 @@ addPhraseToDisplay(phraseArray);
 //  Event listener and function event handler to check whether the correct letter is chosen. Accepts parameter of clicked button. Get and loop through all elements with class .letter and check if they match the letter clicked by the user. If there is a match, add .show class to the li with that letter, store matching letter and return that letter. If there is no match - return null.
 
 function checkLetter(isClicked) {
-        const letters = document.getElementsByClassName('letter');
         isClicked.className = 'chosen';
         isClicked.setAttribute('disabled', 'true');
             for(let i = 0; i < letters.length; i++){
@@ -70,25 +71,45 @@ function checkLetter(isClicked) {
                    const singleLetterText = letters[i].innerText;
                         if(singleLetterText.toLowerCase() === isClicked.innerText){
                             singleLetter.classList.add('show');
-                            matchingLetters.push(singleLetterText);
-                        } else if (singleLetterText.toLowerCase() !== isClicked.innerText){
-                            missed++;
-                            const list = scoreBoard.firstElementChild;
-                            let firstTry = tries[0];
-                            firstTry.remove();
-                            console.log(missed);
-                            
-                        }
+                            matchingLetters.push(singleLetterText); 
+                        } 
+                        
+                        // else if (!phraseArray.includes(isClicked.innerText)) {
+                        //     console.log('ok');
+                        // }
         }
-        return matchingLetters;
    }
 
 qwerty.addEventListener('click', (e)=>{
-    const isClicked = e.target;
-    checkLetter(isClicked); 
+    if (e.target.tagName === 'BUTTON') {
+        const isClicked = e.target;
+        checkLetter(isClicked);
+        let targetPhrase = [];
+        for( item of letters){
+                targetPhrase.push(item.innerText.toLowerCase());
+            }
+    if (!targetPhrase.includes(isClicked.innerText)) {
+            missed++;
+            const list = scoreBoard.firstElementChild;
+            let firstTry = tries[0];
+            firstTry.remove();
+            const fail = document.createElement('li');
+            scoreBoard.firstElementChild.appendChild(fail);
+            fail.innerHTML = `<li class="fail"><img src="images/lostHeart.png" height="35px" width="30px"></li>`;
+                        }         
+    } checkWin();
    });
 
-
-// !letters.includes(isClicked.innerText)
-
-
+function checkWin(){
+    if(letters.length === matchingLetters.length){
+        startOverlay.style.display = '';
+        startOverlay.className = 'win';
+        startOverlay.firstElementChild.innerText = 'You Win!';
+        startOverlay.lastElementChild.innerText = 'Play again?';
+    } else if (missed >= 5){
+        startOverlay.style.display = '';
+        startOverlay.className = 'lose';
+        startOverlay.firstElementChild.innerText = 'You Lose!';
+        startOverlay.lastElementChild.innerText = 'Play again?';
+    }
+}
