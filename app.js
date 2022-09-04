@@ -58,7 +58,7 @@ function createLi(character){
     }
 }
 
-const phraseArray = getRandomPhraseAsArray(phrases);
+let phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
 //  Event listener and function event handler to check whether the correct letter is chosen. Accepts parameter of clicked button. Get and loop through all elements with class .letter and check if they match the letter clicked by the user. If there is a match, add .show class to the li with that letter, store matching letter and return that letter. If there is no match - return null.
@@ -77,12 +77,13 @@ function checkLetter(isClicked) {
         }
    }
 
-   let targetPhrase = [];
+   
+
+qwerty.addEventListener('click', (e)=>{
+    let targetPhrase = [];
         for( item of letters){
                 targetPhrase.push(item.innerText.toLowerCase());
             }
-
-qwerty.addEventListener('click', (e)=>{
     if (e.target.tagName === 'BUTTON') {
         const isClicked = e.target;
         checkLetter(isClicked);
@@ -112,7 +113,6 @@ function checkWin(){
         resetGameButton.innerText = 'Play Again';
         resetGameButton.addEventListener('click', ()=>{
             startOverlay.style.display = 'none';
-            addPhraseToDisplay(phraseArray);
 
         });
 
@@ -129,7 +129,7 @@ function checkWin(){
         resetGameButton.innerText = 'Play Again';
         resetGameButton.addEventListener('click', ()=>{
             startOverlay.style.display = 'none';
-            addPhraseToDisplay(phraseArray);
+
 
         });
     }
@@ -153,6 +153,9 @@ function resetGame() {
     failedAttempts[i].className = 'tries';
     failedAttempts[i].innerHTML = `<img src="images/liveHeart.png" height="35px" width="30px">`;
 }
+            matchingLetters.splice(0, matchingLetters.length);
+            phraseArray = getRandomPhraseAsArray(phrases);
+            addPhraseToDisplay(phraseArray);
 
 }
 
