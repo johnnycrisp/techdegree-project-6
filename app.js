@@ -135,15 +135,17 @@ function checkWin(){
     }
 }
 
-    const chosenLetters = document.getElementsByClassName('chosen');
 
 
 function resetGame() {
     missed = 0;
     phrase.firstElementChild.innerHTML = "";
+    const chosenLetters = document.getElementsByClassName('chosen');
+
     for(let i = 0; i< chosenLetters.length; i++){ 
-        chosenLetters[i].classList.remove("chosen");
-        chosenLetters[i].removeAttribute("disabled");
+         chosenLetters[i].removeAttribute("disabled");
+         chosenLetters[i].classList.remove("chosen");
+       
 }
 
     const failedAttempts = document.querySelectorAll('.fail');
