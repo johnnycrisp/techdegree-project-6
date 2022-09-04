@@ -140,7 +140,7 @@ function checkWin(){
 function resetGame() {
     missed = 0;
     phrase.firstElementChild.innerHTML = "";
-    const chosenLetters = document.getElementsByClassName('chosen');
+    const chosenLetters = document.querySelectorAll('.chosen');
 
     for(let i = 0; i< chosenLetters.length; i++){ 
          chosenLetters[i].removeAttribute("disabled");
