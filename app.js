@@ -112,6 +112,8 @@ function checkWin(){
         resetGameButton.innerText = 'Play Again';
         resetGameButton.addEventListener('click', ()=>{
             startOverlay.style.display = 'none';
+            addPhraseToDisplay(phraseArray);
+
         });
 
 
@@ -127,6 +129,8 @@ function checkWin(){
         resetGameButton.innerText = 'Play Again';
         resetGameButton.addEventListener('click', ()=>{
             startOverlay.style.display = 'none';
+            addPhraseToDisplay(phraseArray);
+
         });
     }
 }
@@ -138,11 +142,9 @@ function resetGame() {
     missed = 0;
     phrase.firstElementChild.innerHTML = "";
     for(let i = 0; i< chosenLetters.length; i++){ 
-        chosenLetters[i].className = '';
-        chosenLetters[i].setAttribute('disabled', 'false');
+        chosenLetters[i].classList.remove("chosen");
+        chosenLetters[i].removeAttribute("disabled");
 }
-
-    addPhraseToDisplay(phraseArray);
 
     const failedAttempts = document.querySelectorAll('.fail');
     for(let i = 0; i< failedAttempts.length; i++){
