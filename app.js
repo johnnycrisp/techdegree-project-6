@@ -126,21 +126,21 @@ function checkWin(){
     }
 }
 
-// function resetGame() {
-//     startOverlay.style.display = 'none';
-//     missed = 0;
-//     const chosenLetters = document.getElementsByClassName('chosen');
-//     for(let i = 0; i< phrase.children.length; i++){
-//         phrase.children[i].remove();
-//     }
-//     for(let i = 0; i< chosenLetters.length; i++){ 
-//             chosenLetters[i].removeAttribute('disabled');
-//             chosenLetters[i].className = '';
+// // function resetGame() {
+// //     startOverlay.style.display = 'none';
+// //     missed = 0;
+// //     const chosenLetters = document.getElementsByClassName('chosen');
+// //     for(let i = 0; i< phrase.children.length; i++){
+// //         phrase.children[i].remove();
+// //     }
+// //     for(let i = 0; i< chosenLetters.length; i++){ 
+// //             chosenLetters[i].removeAttribute('disabled');
+// //             chosenLetters[i].className = '';
+// // }
+
+//     // addPhraseToDisplay(phraseArray);
+
 // }
-
-    // addPhraseToDisplay(phraseArray);
-
-}
 
 
 
