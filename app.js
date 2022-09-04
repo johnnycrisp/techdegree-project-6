@@ -101,12 +101,12 @@ qwerty.addEventListener('click', (e)=>{
 
 function checkWin(){
     if(letters.length === matchingLetters.length){
-        resetGame();
         startOverlay.style.display = '';
         startOverlay.className = 'win';
         startOverlay.firstElementChild.innerText = 'You Win!';
         startOverlay.lastElementChild.remove();
         const resetGameButton = document.createElement('button');
+        resetGame();
         startOverlay.appendChild(resetGameButton);
         resetGameButton.className = 'btn__reset';
         resetGameButton.innerText = 'Play Again';
@@ -118,13 +118,13 @@ function checkWin(){
 
 
     } else if (missed >= 5){
-        resetGame();
         startOverlay.style.display = '';
         startOverlay.className = 'lose';
         startOverlay.firstElementChild.innerText = 'You Lose!';
         startOverlay.lastElementChild.remove();
         const resetGameButton = document.createElement('button');
         startOverlay.appendChild(resetGameButton);
+        resetGame();
         resetGameButton.className = 'btn__reset';
         resetGameButton.innerText = 'Play Again';
         resetGameButton.addEventListener('click', ()=>{
