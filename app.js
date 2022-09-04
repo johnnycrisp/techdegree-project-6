@@ -126,9 +126,8 @@ function checkWin(){
     }
 }
 
-function resetGame() {
-   
-    window.location.reload();
+// function resetGame() {
+//     startOverlay.style.display = 'none';
 //     missed = 0;
 //     const chosenLetters = document.getElementsByClassName('chosen');
 //     for(let i = 0; i< phrase.children.length; i++){
