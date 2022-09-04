@@ -74,20 +74,18 @@ function checkLetter(isClicked) {
                             matchingLetters.push(singleLetterText); 
                         } 
                         
-                        // else if (!phraseArray.includes(isClicked.innerText)) {
-                        //     console.log('ok');
-                        // }
         }
    }
+
+   let targetPhrase = [];
+        for( item of letters){
+                targetPhrase.push(item.innerText.toLowerCase());
+            }
 
 qwerty.addEventListener('click', (e)=>{
     if (e.target.tagName === 'BUTTON') {
         const isClicked = e.target;
         checkLetter(isClicked);
-        let targetPhrase = [];
-        for( item of letters){
-                targetPhrase.push(item.innerText.toLowerCase());
-            }
     if (!targetPhrase.includes(isClicked.innerText)) {
             missed++;
             const list = scoreBoard.firstElementChild;
@@ -105,11 +103,45 @@ function checkWin(){
         startOverlay.style.display = '';
         startOverlay.className = 'win';
         startOverlay.firstElementChild.innerText = 'You Win!';
-        startOverlay.lastElementChild.innerText = 'Play again?';
+        startOverlay.lastElementChild.remove();
+        const resetGameButton = document.createElement('button');
+        startOverlay.appendChild(resetGameButton);
+        resetGameButton.className = 'btn__reset';
+        resetGameButton.innerText = 'Reset Game';
+        resetGameButton.addEventListener('click', ()=>{window.location.reload();})
+
+
     } else if (missed >= 5){
         startOverlay.style.display = '';
         startOverlay.className = 'lose';
         startOverlay.firstElementChild.innerText = 'You Lose!';
-        startOverlay.lastElementChild.innerText = 'Play again?';
+        startOverlay.lastElementChild.remove();
+        const resetGameButton = document.createElement('button');
+        startOverlay.appendChild(resetGameButton);
+        resetGameButton.className = 'btn__reset';
+        resetGameButton.innerText = 'Reset Game';
+        resetGameButton.addEventListener('click', ()=>{window.location.reload();})
+
+
     }
 }
+
+function resetGame() {
+   
+    window.location.reload();
+//     missed = 0;
+//     const chosenLetters = document.getElementsByClassName('chosen');
+//     for(let i = 0; i< phrase.children.length; i++){
+//         phrase.children[i].remove();
+//     }
+//     for(let i = 0; i< chosenLetters.length; i++){ 
+//             chosenLetters[i].removeAttribute('disabled');
+//             chosenLetters[i].className = '';
+// }
+
+    // addPhraseToDisplay(phraseArray);
+
+}
+
+
+
