@@ -50,7 +50,7 @@ function addPhraseToDisplay(arr) {
 function createLi(character){
     const li = document.createElement('li');
     li.textContent = character;
-    phrase.appendChild(li);
+    phrase.firstElementChild.appendChild(li);
     if(li.innerText === ''){
         li.className = 'space';
     } else {
@@ -93,13 +93,15 @@ qwerty.addEventListener('click', (e)=>{
             firstTry.remove();
             const fail = document.createElement('li');
             scoreBoard.firstElementChild.appendChild(fail);
-            fail.innerHTML = `<li class="fail"><img src="images/lostHeart.png" height="35px" width="30px"></li>`;
+            fail.innerHTML = `<img src="images/lostHeart.png" height="35px" width="30px">`;
+            fail.className = 'fail';
                         }         
     } checkWin();
    });
 
 function checkWin(){
     if(letters.length === matchingLetters.length){
+        resetGame();
         startOverlay.style.display = '';
         startOverlay.className = 'win';
         startOverlay.firstElementChild.innerText = 'You Win!';
@@ -107,11 +109,14 @@ function checkWin(){
         const resetGameButton = document.createElement('button');
         startOverlay.appendChild(resetGameButton);
         resetGameButton.className = 'btn__reset';
-        resetGameButton.innerText = 'Reset Game';
-        resetGameButton.addEventListener('click', ()=>{window.location.reload();})
+        resetGameButton.innerText = 'Play Again';
+        resetGameButton.addEventListener('click', ()=>{
+            startOverlay.style.display = 'none';
+        });
 
 
     } else if (missed >= 5){
+        resetGame();
         startOverlay.style.display = '';
         startOverlay.className = 'lose';
         startOverlay.firstElementChild.innerText = 'You Lose!';
@@ -119,28 +124,33 @@ function checkWin(){
         const resetGameButton = document.createElement('button');
         startOverlay.appendChild(resetGameButton);
         resetGameButton.className = 'btn__reset';
-        resetGameButton.innerText = 'Reset Game';
-        resetGameButton.addEventListener('click', ()=>{window.location.reload();})
-
-
+        resetGameButton.innerText = 'Play Again';
+        resetGameButton.addEventListener('click', ()=>{
+            startOverlay.style.display = 'none';
+        });
     }
 }
 
-// // function resetGame() {
-// //     startOverlay.style.display = 'none';
-// //     missed = 0;
-// //     const chosenLetters = document.getElementsByClassName('chosen');
-// //     for(let i = 0; i< phrase.children.length; i++){
-// //         phrase.children[i].remove();
-// //     }
-// //     for(let i = 0; i< chosenLetters.length; i++){ 
-// //             chosenLetters[i].removeAttribute('disabled');
-// //             chosenLetters[i].className = '';
-// // }
+    const chosenLetters = document.getElementsByClassName('chosen');
 
-//     // addPhraseToDisplay(phraseArray);
 
-// }
+function resetGame() {
+    missed = 0;
+    phrase.firstElementChild.innerHTML = "";
+    for(let i = 0; i< chosenLetters.length; i++){ 
+        chosenLetters[i].className = '';
+        chosenLetters[i].setAttribute('disabled', 'false');
+}
+
+    addPhraseToDisplay(phraseArray);
+
+    const failedAttempts = document.querySelectorAll('.fail');
+    for(let i = 0; i< failedAttempts.length; i++){
+    failedAttempts[i].className = 'tries';
+    failedAttempts[i].innerHTML = `<img src="images/liveHeart.png" height="35px" width="30px">`;
+}
+
+}
 
 
 

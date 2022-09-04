@@ -93,7 +93,7 @@ button {
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
-  transition: color 1.5s;
+  transition: background 1.5s;
 }
 
 .space {
