@@ -27,7 +27,6 @@ body {
   align-items: center;
   flex-direction: column;
   display: flex;
-  width: 100%;
 }
 
 li,
@@ -42,7 +41,7 @@ h2 {
   text-transform: uppercase;
   font-family: "Open Sans", sans-serif;
   font-size: var(--font-size-large);
-  margin: 0;
+
 }
 
 button {
@@ -67,16 +66,18 @@ button {
   height: 100%;
   max-height: 900px;
   text-align: center;
+  width: 100vw;
+  margin: 0 auto;
 }
 
 
 .section {
- 
   padding: 10px;
 }
 
 #qwerty {
   margin: 12px;
+  min-width: 100vw;
 }
 
 .btn__reset {
@@ -117,6 +118,7 @@ button {
 .keyrow {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .chosen {
