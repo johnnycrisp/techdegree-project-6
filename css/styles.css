@@ -27,11 +27,9 @@ body {
   align-items: center;
   flex-direction: column;
   display: flex;
-  height: 100%;
+  width: 100%;
   min-width: 580px;
   margin: 20px;
-  width: 100vw;
-  overflow-x: hidden;
 }
 
 li,
@@ -153,6 +151,7 @@ button {
   left: 0;
   right: 0;
   border-radius: 5px;
+  width: 100vw;
 }
 
 .title {
