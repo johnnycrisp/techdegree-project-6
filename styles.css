@@ -28,7 +28,6 @@ body {
   flex-direction: column;
   display: flex;
   width: 100%;
-  min-width: 580px;
 }
 
 li,
@@ -77,7 +76,6 @@ button {
 }
 
 #qwerty {
-  min-width: 580px;
   margin: 12px;
 }
 
