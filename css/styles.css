@@ -27,6 +27,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  min-width: 580px;
 }
 
 li, ol, ul {
@@ -59,6 +60,7 @@ button {
 
 .main-container {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: space-around;
   height: 100%;
@@ -69,6 +71,11 @@ button {
 .section {
   width: 100%;
   padding: 10px;
+}
+
+#qwerty {
+  min-width: 580px;
+  margin: 1px;
 }
 
 .btn__reset {
@@ -132,6 +139,7 @@ button {
 #overlay {
   display: flex;
   flex-direction: column;
+  align-items: center;
   position: fixed;
   color: #FFFFFF;
   justify-content: center;
